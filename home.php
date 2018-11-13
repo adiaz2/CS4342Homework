@@ -6,9 +6,9 @@
   </head>
   
   <body>
-	<h1>CS4342 Database Management - Web Interface</h1>
+	<h1>CS4342 Database Management Electronic Access - Web Interface</h1>
 	<h2>PHP demos </h2>
-	<p>*Modified from examples provided by Jesse Allen</p>
+	<p>Welcome to the Electronic Access Web Interface</p>
 	 <br/>
 	 <h2>Main Menu</h2>
 	<ul>
