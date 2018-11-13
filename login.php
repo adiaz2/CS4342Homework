@@ -40,7 +40,7 @@ else{
                     setcookie("loggedin", "TRUE", time() + (3600 * 24));
                     setcookie("mysite_username", "$username");
                     echo "You are now logged in as a regular user!";
-                    echo "<a href=\"student_form.html\">Click Here to Fill Request Form</a>";
+                    echo "<a href=\"studentHome.php\">Main Menu</a>";
                 }
             }
         }
