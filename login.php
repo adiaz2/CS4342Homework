@@ -26,7 +26,7 @@ else{
                 setcookie("loggedin", "TRUE", time() + (3600 * 24));
                 setcookie("mysite_username", "$username");
                 echo "You are now logged in as admin!";
-                echo "<a href=\"home.php\">Main Menu</a>";
+                echo "<a href=\"adminHome.php\">Main Menu</a>";
             }
         }
     }

@@ -7,7 +7,7 @@
 
 <body>
 <h1>CS4342 Database Management Electronic Access - Web Interface</h1>
-<h2>PHP demos </h2>
+<h2>User Access </h2>
 <p>Welcome to the Electronic Access Web Interface</p>
 <br/>
 <h2>Main Menu</h2>

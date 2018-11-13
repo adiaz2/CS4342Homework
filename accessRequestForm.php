@@ -6,14 +6,22 @@
  * Time: 7:56 AM
  */
 echo 'hello';
+$id = rand(10000, 99999);
+$key = $_POST['keyStatus'];
+$request_status = 'Pending';
+$access_hours = $_POST['hoursOfAccess'];
+$start_date = $_POST['startDate'];
+$end_date = $_POST['endDate'];
+$key_status = 'Pending';
+$professor = $_POST['professorName'];
 $email = $_POST['email'];
-$password = $_POST['password'];
-$groupTags = $_POST['groupTags'];
-$studentID = $_POST['studentID'];
-$name = $_POST['name'];
-$gradDate = $_POST['graduation date'];
+$facultyEmail = $_POST['facultyEmail'];
+$adminEmail = $_POST['adminEmail'];
+$roomNumber = $_POST['roomNumber'];
 
-echo $email . "\n" . $password . "\n" . $groupTags . "\n" . $studentID . "\n" . $name . "\n" . $gradDate . "\n";
+echo $email . "\n" . $id . "\n" . $key . "\n" . $request_status . "\n" . $access_hours . "\n" . $start_date . "\n"
+    . $end_date . "\n" . $key_status . "\n" . $professor . "\n" . $email . "\n" . $facultyEmail . "\n"
+    . $adminEmail . "\n" . $roomNumber . "\n";
 
 #include("config.php");
 $host = "ilinkserver.cs.utep.edu";
@@ -28,12 +36,15 @@ if ($conn->connect_error){
     die("fail");
 }
 else {
-    $dataToInsert = "'" . $email . "', " . "'" . $password . "', " . "'" . $groupTags . "', " . "'" . $studentID . "', " . "'" . $name . "', " . "'" . $gradDate . "'";
-    $sql = "INSERT INTO student (Semail, Spassword, Sgroup_tags, Sstu_id, Sname, Sgraduation_date) VALUES (" . $dataToInsert . ")";
+    $dataToInsert = "'" . $id . "', " . "'" . $key . "', " . "'" . $request_status . "', " . "'" . $access_hours . "', "
+        . "'" . $start_date . "', ". "'" . $end_date . "', ". "'" . $key_status . "', " . "'" . $professor . "'"
+        . "'" . $email . "', ". "'" . $facultyEmail . "', ". "'" . $adminEmail . "', ". "'" . $roomNumber . "'";
+    $sql = "INSERT INTO request (Rid, Rkey, Rrequest_status, Raccess_hours, Rstart_date, Rend_date, Rkey_status, 
+Rprofessor, Semail, Femail, Aemail, Room_number) VALUES (" . $dataToInsert . ")";
 
     if($conn->query($sql) === TRUE){
         echo "Form successfully added!";
-        echo "<a href=\"home.php\">Click Here to Fill Request Form</a>";
+        echo "<a href=\"studentHome.php\">Click Here to Return to Main Menu</a>";
     }
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;
