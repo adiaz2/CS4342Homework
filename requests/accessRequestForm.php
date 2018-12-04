@@ -65,12 +65,11 @@ else {
         }
     }
 
-    $dataToInsert = "'" . $id . "', " . "'" . $key . "', " . "'" . $request_status . "', "
+    $dataToInsert = "'" . $id . "', " . "'" . $key . "', " . "'" . $request_status . "', " . "'" . $access_hours . "',"
         . "'" . $start_date . "', ". "'" . $end_date . "', " . "'" . $key_status . "', " . "'" . $professor . "', "
         . "'" . $email . "', ". "'" . $facultyEmail . "', ". "'" . $adminEmail . "', ". "'" . $roomNumber . "'";
 
     $sql = "INSERT INTO request VALUES (" . $dataToInsert . ")";
-    echo "<br>$sql";
     if($conn->query($sql) === TRUE){
         echo "Form successfully added!";
         echo "<a href=\"../logins/login.html\">Click Here to Return to Main Menu</a>";
