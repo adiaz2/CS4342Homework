@@ -5,19 +5,17 @@
  * Date: 11/13/18
  * Time: 7:56 AM
  */
-echo 'hello';
+
 $email = $_POST['email'];
-$password = $_POST['password'];
+$pwd = $_POST['password'];
 $groupTags = $_POST['groupTags'];
 $studentID = $_POST['studentID'];
 $name = $_POST['name'];
 $gradDate = $_POST['graduation date'];
 
-echo $email . "\n" . $password . "\n" . $groupTags . "\n" . $studentID . "\n" . $name . "\n" . $gradDate . "\n";
 
-#include("config.php");
 $host = "ilinkserver.cs.utep.edu";
-$db = 'adiaz47';
+$db = 'f18_team4';
 $username = 'cs_adiaz47';
 $password = 'Ad020908!';
 
@@ -28,12 +26,17 @@ if ($conn->connect_error){
     die("fail");
 }
 else {
-    $dataToInsert = "'" . $email . "', " . "'" . $password . "', " . "'" . $groupTags . "', " . "'" . $studentID . "', " . "'" . $name . "', " . "'" . $gradDate . "'";
+    $dataToInsert = "'" . $email . "', " . "'" . $pwd . "', " . "'" . $groupTags . "', " . "'" . $studentID . "', " . "'" . $name . "', " . "'" . $gradDate . "'";
     $sql = "INSERT INTO student (Semail, Spassword, Sgroup_tags, Sstu_id, Sname, Sgraduation_date) VALUES (" . $dataToInsert . ")";
 
     if($conn->query($sql) === TRUE){
-        echo "Form successfully added!";
-        echo "<a href=\"studentHome.php\">Click Here to Return to Main Menu</a>";
+        #create a login id for them
+        $dataToInsert = "'" . $email . "', " . "'" . $pwd . "'";
+        $sql = "INSERT INTO studentLogins (id, pwd) VALUES (" . $dataToInsert . ")";
+        if($conn->query($sql) === TRUE){
+            echo "Account Successfully Created! ";
+            echo "<a href=\"../logins/login.html\">Click Here to Log In</a>";
+        }
     }
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;

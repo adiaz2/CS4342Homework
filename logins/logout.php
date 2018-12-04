@@ -4,6 +4,6 @@
 setcookie ("loggedin", "", time() - 3600);
 
 echo "You are now logged out.<br>";
-echo "<a href=\"login.html\">Log in</a>.";
+echo "<a href=\"../logins/login.php\">Log In</a>";
 
 ?>

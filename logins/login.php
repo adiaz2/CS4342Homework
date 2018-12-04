@@ -2,7 +2,7 @@
 
 #include("config.php"); 
 $host = "ilinkserver.cs.utep.edu";
-$db = 'adiaz47';
+$db = 'f18_team4';
 $username = 'cs_adiaz47';
 $password = 'Ad020908!';
 
@@ -17,6 +17,20 @@ if ($conn->connect_error){
 }
 else{
 
+    $sql = "SELECT pwd FROM  adminLogins WHERE id='" . $id . "'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($pwd == $row["pwd"]) {
+                setcookie("loggedin", "TRUE", time() + (3600 * 24));
+                setcookie("mysite_username", "$username");
+                echo "You are now logged in as admin!\n";
+                echo "<a href=\"../admin/adminHome.php?id='" . $id . "'\">Main Menu</a>";
+                return;
+            }
+        }
+    }
     $sql = "SELECT pwd FROM  FacultyLogins WHERE id='" . $id . "'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -25,8 +39,9 @@ else{
             if ($pwd == $row["pwd"]) {
                 setcookie("loggedin", "TRUE", time() + (3600 * 24));
                 setcookie("mysite_username", "$username");
-                echo "You are now logged in as admin!";
-                echo "<a href=\"adminHome.php\">Main Menu</a>";
+                echo "You are now logged in as faculty! \n";
+                echo "<a href=\"../faculty/facultyHome.php?id='" . $id . "'\">Main Menu</a>";
+                return;
             }
         }
     }
@@ -39,14 +54,15 @@ else{
                 if ($pwd == $row["pwd"]) {
                     setcookie("loggedin", "TRUE", time() + (3600 * 24));
                     setcookie("mysite_username", "$username");
-                    echo "You are now logged in as a regular user!";
-                    echo "<a href=\"studentHome.php\">Main Menu</a>";
+                    echo "You are now logged in as a regular user!\n";
+                    echo "<a href=\"../student/studentHome.php?id='" . $id . "'\">Main Menu</a>";
+                    return;
                 }
             }
         }
     }
-
-
+    echo "Email/Password Combination ot Valid ";
+    echo "<a href=\"login.html\">Click Here to Log In</a>";
 
 }
 
